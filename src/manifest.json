@@ -1,0 +1,81 @@
+{
+  "manifest_version": 3,
+  "name": "Image Downloader",
+  "description": "Extension to help with downloads for your browser",
+  "options_page": "options.html",
+  "feedback_page": "feedback.html",
+  "background": {
+    "service_worker": "background.bundle.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "32.png"
+  },
+  "icons": {
+    "128": "128.png",
+    "112": "112.png",
+    "96": "96.png",
+    "64": "64.png",
+    "48": "48.png",
+    "38": "38.png",
+    "32": "32.png",
+    "19": "19.png",
+    "16": "16.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "match_about_blank": true,
+      "all_frames": true,
+      "css": [
+        "content.styles.css"
+      ],
+      "js": [
+        "assets/js/inject.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "devtools_page": "devtools.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content.styles.css",
+        "128.png",
+        "32.png"
+      ],
+      "matches": []
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules_1.json"
+      }
+    ]
+  },
+  "permissions": [
+    "contextMenus",
+    "webRequest",
+    "declarativeNetRequest",
+    "webNavigation",
+    "activeTab",
+    "tabs",
+    "storage",
+    "alarms",
+    "scripting",
+    "browserAction",
+    "action"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "*://*/*"
+  ],
+  "storage": {
+    "managed_schema": "assets/managed-schema.json"
+  }
+}
